@@ -1,0 +1,94 @@
+Part 1. In the "src\Framework" folder, the following code files have been modified for time-evolving simulations.
+1. NodalStatesExtrapolator.ci
+You need to modify this file in the sections marked with the the following comments, as described in the the manu:
+"case-dependent_1", "case-dependent_2", "case-dependent_3", "case-dependent_4", and "case-dependent_5".
+
+2. NodalStateExtrapolator.hh  2024.05.14
+Between Lines 224 and 226, Haopeng Wang  added the following declaration, which also work for linear interpolation.
+void readSurfaceDataextrapolator(std::vector<SurfaceData*>& surfaces,
+		       const std::string& fileName, const std::string& fileName2,
+			   double Coefi1, double Coefi2);	
+
+3. ConvergenceMethod.cxx
+Between Lines 447 and 455, Haopeng Wang transferd the time from code unite to physical unite in hours and print it to the output dialog.
+L450 modified 'out << subSysStatus->getCurrentTimeDim();' to 'out << subSysStatus->getCurrentTimeDim()*1447.2/3600.0;'
+L454 modified 'out << subSysStatus->getDTDim();' to 'out << subSysStatus->getDTDim()*1447.2/3600.0;'.
+
+4. PathAppender.cxx 
+Between Lines 113 and 115, Haopeng Wang transfered code unite to physical unite in hours.
+L113     CFreal physicaltime = time*1447.2/3600.0;
+L114     physicaltime=int(physicaltime*100.0)/100.0;
+L115     std::string time_string = Common::StringOps::to_str(physicaltime);
+
+5. SubSystemStatus.cxx
+Between Lines 222 and 227, Haopeng Wang defined the start time in physical hour and then transfer it to code unite. It is related to "SubSystemStatusStack::getActive()->getCurrentTimeDim()"
+L222 CFreal restarttime = 0.0
+L227 return (PhysicalModelStack::getActive()->getImplementor()->getRefTime())*m_currentTime+restarttime*1447.2/3600.0;
+
+With help from Andrea, this currently can be done in the CFcase, therefore no longer need to modify this file.
+
+Part 2. In the "Plugins\FiniteVolume" folder, the following code files have been modified for time-evolving simulations.
+1. HLLFlux.cxx
+Between Lines 96 and 119, Haopeng Wang  defined the parameter "alpha" for self-adjustable dispation term of HLL.
+corresponding modifications are added between the comments started with "mark".
+
+Part 3. In the "Plugins\FiniteVolumeMHD" folder, the following code files have been modified for time-evolving simulations.
+1. SuperInletProjectionConstrained.hh
+In Line 69, Haopeng Wang added "virtual void preProcess();"
+In Line 83, Haopeng Wang comment "Common::CFMap<Framework::TopologicalRegionSet*, RealVector*> m_mapTrs2Twall;" 
+
+2. SuperInletProjectionConstrained.cxx
+It corresponding to the innerboundary conditions described in the time-evolving COCONUT paper.
+Pay attention the difinition of  maxvA, currently it is defined as "CFreal maxvA = 3.0e6;", but it can also be changed to "CFreal maxvA = 3.0e6;" for solar minimum.
+
+3. SuperInletProjection.hh
+In line 65, Andrea added "virtual void preProcess();".
+
+4. SuperInletProjection.cxx
+Between Lines 343 and 354, Andrea defined the "virtual void preProcess();" function.
+
+5. CMakelists.txt
+Since "SuperInletProjectionConstrained.hh", "SuperInletProjectionConstrained.cxx", "SuperInletProjectionConstrainedST.hh", "SuperInletProjectionConstrainedST.cxx", "SuperInletProjectionConstrainedMichaela", and "SuperInletProjectionConstrainedMichaela" are newly developed files, you should add the following commands to "CMakelists.txt" file.
+"
+SuperInletProjectionConstrained.cxx
+SuperInletProjectionConstrained.hh
+SuperInletProjectionConstrainedST.cxx
+SuperInletProjectionConstrainedST.hh
+SuperInletProjectionConstrainedMichaela.cxx
+SuperInletProjectionConstrainedMichaela.hh
+".
+
+6. Venktn3DStrict.cxx
+Between Lines 185 and 186 Haopeng Wang comment out "psimin = min(psi, psimin);" and added "psimin = 1.0;".
+
+7. MHDConsACASourceTerm.cxx 
+Between Lines 329 and 494: Haopeng Wang changed the rediative cooling curve from Rosner1978 to chiant 9.
+Lines 357-494 Haopeng Wang added the radiattive loss function derived from chiant 9. Correspondingly, Lines 329 and 353 are commented out.
+
+Part 4. In the "Plugins\NewtonMethod" folder, the following code files have been modified for time-evolving simulations and enhanced numerical stability.
+1. BDF2.cxx
+In Lines 148 and 149, Haopeng Wang changed "(m_data->freezeJacobian() && k > 1) ? m_data->setDoComputeJacobFlag(false) : m_data->setDoComputeJacobFlag(true);" 
+to (m_data->freezeJacobian() && (k > 1) && (k % 4 != 0)) ? m_data->setDoComputeJacobFlag(false) : m_data->setDoComputeJacobFlag(true);
+
+2. "StdUpdateSolPP.cxx" and "StdUpdateSolPP.cxx" are newly developed files, thererfore in "CMakeLists.txt" file, you should include the following lines:
+"
+StdUpdateSolPP.hh
+StdUpdateSolPP.cxx
+".
+
+3. UpdateSolMHD.cxx
+There are also some modification in "UpdateSolMHD.cxx", given that we didn't need to use it, don't pay attention to the modifications here.
+
+Part 5. In the "Plugins\TecplotWriter" folder, the following code files have been modified for time-evolving simulations.
+1. ParWriteSolutionBlock.cxx 
+Line 546 Haopeng Wang transfer the time unit from code unit to physical hour
+Line 546 CFreal timeDim = SubSystemStatusStack::getActive()->getCurrentTimeDim()*1447.2/3600.0;
+In Line 503 Haopeng Wang tried to comment "cf_assert(tt.nodesOffset[iType].second == maxpos);" to avoid exit while saving data.
+
+2. WriteSolutionBlockFV.cxx 
+transfer code unites to physical unites in output files.
+Line 248 CFreal solutiontime = subSysStatus->getCurrentTimeDim() > 0 ? subSysStatus->getCurrentTimeDim()*1447.2/3600.0 : subSysStatus->getNbIter();
+Line 268 << ", AUXDATA PhysTime=\"" << subSysStatus->getCurrentTimeDim()*1447.2/3600.0 << "\""
+Line 699 CFreal solutiontime = subSysStatus->getCurrentTimeDim() > 0 ? subSysStatus->getCurrentTimeDim()*1447.2/3600.0 : subSysStatus->getNbIter();
+
+
