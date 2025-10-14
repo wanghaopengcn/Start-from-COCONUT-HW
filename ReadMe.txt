@@ -2,7 +2,8 @@ We recommend reviewing the introductory documents in the eDocument folder, which
 
 You can directly upload the files from the first four folders into the corresponding directories in the plugins folder of the Master version of COCONUT you just installed. 
 
-Before recompile, you need to open the already replaced files, add a space in any blank area, and then save them. This will ensure the replaced files are recognized as modified and will be recompiled.
+Attention!
+Before recompile, you need to open the already replaced files, add a space in any blank area, and then save them. This will ensure the replaced files are recognized as modified and will be recompiled. “MHD3DConsToPrimEInRef.cxx” and "MHD3DConsToPrimEInRef.hh" are newly developed files in MHD folder, therefore add them to the Cmakelist in this folder.
 
 ScriptDecE and scriptMaster contain job submission scripts corresponds to COCONUT adopting decomposed and full energy equations.
 
