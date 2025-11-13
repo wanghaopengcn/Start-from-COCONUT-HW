@@ -1,4 +1,4 @@
-We recommend reviewing the introductory documents in the eDocument folder, which provide background and development of this model, before proceeding.
+We recommend reviewing the introductory documents in the zDocuments folder, which provide background and development of this model, before proceeding.
 
 You can directly upload the files from the first four folders into the corresponding directories in the plugins folder of the Master version of COCONUT you just installed. 
 
