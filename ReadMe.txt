@@ -12,3 +12,5 @@ The folder “TestCaseAround2024MayEvent” contains the complet COCONUT files r
 The post-processing code “result_drawing_COCONUT_Seq.f90” is also included in the directory “TestCaseAround2024MayEvent\Scratch_DiskSection\COCONUT_Map\results-map-res\30Rs_lv6\Timeevolving\fullMHD\2024.”
 
 "coconut_bcfile-3.py" can be used to create input magnetogram files for COCONUT. 
+"ScriptDecE/MapData/zqsCR2219Lmax20/" contains around 600 hourly-updated magnetigram data files for the solar minimum Carrington rotation (CR) around 2019 eclipse.
+"ScriptDecE/MapData/zqsCR2296Lmax25/" contains 14 hourly-updated magnetogram data files for the solar maxmim CR case presented in the installation example slides.
