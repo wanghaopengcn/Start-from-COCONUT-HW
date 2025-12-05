@@ -308,6 +308,7 @@ Simulator.SubSystem.FlowIterator.Data.CollaboratorNames = Flow FlowLSS
 #Simulator.SubSystem.FlowIterator.UpdateSol =  StdUpdateSol
 Simulator.SubSystem.FlowIterator.UpdateSol =  StdUpdateSolPP
 Simulator.SubSystem.FlowIterator.StdUpdateSolPP.Relaxation= 1.
+# 0.25801090625 and 2.0 for solar maximum, 0.108 and 1.0 for solar minimum, should be consistent with boundary values
 Simulator.SubSystem.FlowIterator.StdUpdateSolPP.pressureBoundaryValue = 0.25801090625  # 0.108 #1.032043625 #0.5160218125  #
 Simulator.SubSystem.FlowIterator.StdUpdateSolPP.densityBoundaryValue = 2.0  # 1.0 #8.0 #4.0  #
 # Time-evolving
