@@ -299,6 +299,7 @@ Simulator.SubSystem.FlowIterator.Data.CollaboratorNames = Flow FlowLSS
 #Simulator.SubSystem.FlowIterator.StdUpdateSol.Relaxation= 1.
 # Time-evolving
 Simulator.SubSystem.FlowIterator.UpdateSol =  StdUpdateSolPP
+# 0.25801090625 and 2.0 for solar maximum, 0.108 and 1.0 for solar minimum, should be consistent with boundary values
 Simulator.SubSystem.FlowIterator.StdUpdateSolPP.pressureBoundaryValue =0.25801090625  #0.108 # 
 Simulator.SubSystem.FlowIterator.StdUpdateSolPP.densityBoundaryValue =2.0  #1.0 # 
 #Simulator.SubSystem.FlowIterator.UpdateSol =  UpdateSolMHD 
@@ -395,7 +396,7 @@ Simulator.SubSystem.Flow.Data.DerivativeStrategy = Corrected3D
 # this activates the computation of the radius for transport properties
 Simulator.SubSystem.Flow.Data.NavierStokesMHD.isRadiusNeeded = true
 # this allows for using an alternative implementation of the thermal conduction 
-# (Prim uses Tinatin¡¯s implementation,PrimHW for Haopeng Wang)
+# (Prim uses TinatinÂ¡Â¯s implementation,PrimHW for Haopeng Wang)
 #Simulator.SubSystem.Flow.Data.DiffusiveVar = Prim
 Simulator.SubSystem.Flow.Data.DiffusiveVar = PrimHW
 #<<Full MHD#
