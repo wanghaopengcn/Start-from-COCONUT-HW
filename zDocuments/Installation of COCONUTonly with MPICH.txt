@@ -1,0 +1,49 @@
+1. Follow:
+https://github.com/andrealani/COOLFluiD/wiki/HOWTO-install-on-Genius-(for-KU-Leuven-users)
+to install COCONUT only via
+install_COOLFluiD_COCONUTonly.sh
+
+Make the installation script runnable: 
+dos2unix install_COOLFluiD_COCONUTonly.sh ; chmod u+x install_COOLFluiD_COCONUTonly.sh
+
+Run
+./install_COOLFluiD_COCONUTonly.sh DEBUG_NOCUDA --download=2
+
+
+2. Install with MPICH:
+
+Genius
+
+So in $VSC_DATA/COOLFluiD_Genius_Mine, 
+
+Save the COCONUT_nocuda_MPICH.conf
+
+make a directory named MPICH
+
+In MPICH directory,  run the script COCONUT_MPICH.sh by sh COCONUT_MPICH.sh
+
+
+
+3. Install the latest OpenMPI
+
+Genius
+
+In  $VSC_DATA/COOLFluiD_Genius_Mine , 
+
+Save the COCONUT_nocuda_OPENMPI.conf
+
+Go to your OPENMPI directory at $VSC_DATA/COOLFluiD_Genius_Mine/OPENMPI,
+
+Run the script by   sh COCONUT_OPENMPI.sh
+
+4. ln the solver to your work folder via
+ln -sf /data/leuven/357/vsc35794/COOLFluiD_Genius_Mine/MPICH/skylake/optim/apps/Solver/coolfluid-solver* ./
+in the folder from where you will submitt a job.
+
+5. Submitt your job, you can reffer to Quasi_steady_Tier2.slurm for example.
+
+When you revised some source code, please recompile COCONUT in MPICH directory,  
+run the script COCONUT_MPICH.sh by sh COCONUT_MPICH.sh, with "make install" commented out via "#make install" in COCONUT_MPICH.sh.
+
+
+
