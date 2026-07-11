@@ -325,9 +325,9 @@ RealVector& MHD3DProjectionDiffPrimHW::getFlux(const RealVector& state,
    else if (qF_ < 0.0){
 	   sgnq = -1.0;
    }
-   CFreal qF_x = sgnq*Bx;
-   CFreal qF_y = sgnq*By;
-   CFreal qF_z = sgnq*Bz;
+   CFreal qF_x = sgnq*Bx/Bnorm;
+   CFreal qF_y = sgnq*By/Bnorm;
+   CFreal qF_z = sgnq*Bz/Bnorm;
    
    CFreal alpha_cond = 0.;
    //CFreal mach = Vnorm* std::sqrt(mu*mH/(2*kB*T0_new));
