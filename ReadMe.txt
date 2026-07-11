@@ -16,3 +16,10 @@ The post-processing code “result_drawing_COCONUT_Seq.f90” is also included i
 "coconut_bcfile-3.py" can be used to create input magnetogram files for COCONUT. 
 "ScriptDecE/MapData/zqsCR2219Lmax20/" contains around 600 hourly-updated magnetigram data files for the solar minimum Carrington rotation (CR) around 2019 eclipse.
 "ScriptDecE/MapData/zqsCR2296Lmax25/" contains 14 hourly-updated magnetogram data files for the solar maxmim CR case presented in the installation example slides.
+
+Corresponding References:
+Wang, H. P., Poedts, S., Lani, A., et al. 2025a, Efficient magnetohydrodynamic modelling of the time-evolving corona by COCONUT, A & A, 694, A234
+Wang, H. P., Poedts, S., Lani, A., et al. 2025b, Time-evolving coronal modelling of the solar maximum around the solar storms in May 2024 by COCONUT, A & A, 702, A37
+Wang, H. P., Poedts, S., Lani, A., et al. 2026a, COCONUT: A Coronal Model with an Energy Decomposition Strategy, ApJS, 283, 40
+Wang, H. P., Poedts, S., Lani, A., et al. 2026b, MHD modeling of magnetic flux evolution around solar maximum by the coronal model COCONUT, [arXiv:2601.10675]
+Wang, H. P., Poedts, S., Lani, A., et al. 2026c, COCONUT: Toward practical time-evolving Sun-to-Earth magnetohydrodynamic modeling, [arXiv:2605.03330]
