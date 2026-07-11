@@ -7,7 +7,7 @@ Attention!
 Before recompile, you need to open the already replaced files, add a space in any blank area, and then save them. This will ensure the replaced files are recognized as modified and will be recompiled. “MHD3DConsToPrimEInRef.cxx” and "MHD3DConsToPrimEInRef.hh" are newly developed files in MHD folder, therefore add them to the 
 Cmakelist in this folder.
 
-ScriptDecE and scriptMaster contain job submission scripts corresponds to COCONUT adopting decomposed and full energy equations.
+ScriptDecE and scriptMaster contain job submission scripts corresponds to COCONUT adopting decomposed and full energy equations (New versions are avialable in the Master version COCONUT repository).
 
 The folder “TestCaseAround2024MayEvent” contains the complet COCONUT files related to the paper Haopeng Wang, Stefaan Poedts, Andrea Lani et al. (2025): “Time-evolving coronal modelling of the solar maximum around the solar storms in May 2024 by COCONUT, A&A, 1–11”.
 
